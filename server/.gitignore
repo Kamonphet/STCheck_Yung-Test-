@@ -1,0 +1,3 @@
+# เลือกไฟล์ที่จะไม่อัพขึ้น Github
+.env
+node_modules
