@@ -38,7 +38,7 @@ const Modal =({closeModal})=> {
         setState({...state,classroom:"",subject:"",profile:""})
         // back to /Dashboard
         setTimeout(() => {
-          window.location.href="/dashboard"
+          window.location.reload();
         }, 1000); 
     }).catch(err=>{
         Swal.fire('แจ้งเตือน',err.response.data.error,'error')
