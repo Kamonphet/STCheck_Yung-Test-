@@ -104,7 +104,6 @@ const Dashboard = () => {
                         <p className="mt-1 text-lg font-medium text-gray-900">
                             {classroom.subject}
                         </p>
-                        <button className="text-yellow">แก้ไขห้องเรียน</button> &nbsp;|&nbsp;
                         <button className="text-red-400" onClick={()=>confirmDelete(classroom.slug)}>ลบห้องเรียน</button>
                         </div>
                     ))}

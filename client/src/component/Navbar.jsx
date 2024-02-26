@@ -31,12 +31,12 @@ const Navbar = () => {
             })}
           </div>
           <div className='flex items-center gap-4'>
-            <button className="py-3 px-6 font-bold text-md border border-solid rounded-lg border-blue-400">
+            <a href='../Register' className="py-3 px-6 font-bold text-md border border-solid rounded-lg border-blue-400">
               Sign Up
-            </button>
-            <button className="px-6 py-3 font-bold text-white bg-blue-400 rounded-lg text-md">
+            </a>
+            <a href='../Login' className="px-6 py-3 font-bold text-white bg-blue-400 rounded-lg text-md">
               Sign in
-            </button>
+            </a>
           </div>
           
           {toggle && (

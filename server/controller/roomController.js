@@ -62,3 +62,16 @@ exports.deleteRoom=async (req,res)=>{
         res.status(400).json({message : "Failed to Delete!"})
     })
 }
+
+exports.updateRoom = async (req, res) => {
+    const { slug } = req.params;
+    const {classroom, subject, profile} = req.body
+    roomModel.findOneAndUpdate({slug},{classroom ,subject ,profile},{new:true})
+    .then((room)=>{
+        res.send('Updated')
+        // res.status(200).json(room)
+    }).catch((err)=>{   
+        console.log(err)
+        res.status(500).json({message:"Faild To Update"})
+    })
+}

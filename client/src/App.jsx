@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
 import Dashboard from "./pages/Dashboard";
 import Singleroom from "./pages/Singleroom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
   {
     path: "/room/:slug",
     element: <Singleroom/>
+  },
+  {
+    path: "/Login",
+    element: <Login/>
+  },
+  {
+    path: "/Register",
+    element: <Register/>
   },
   {
       path:"*",

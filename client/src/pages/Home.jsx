@@ -16,7 +16,7 @@ import TrackVisibility from 'react-on-screen'
 const Home=()=>{
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
-    const toRotate = [`I'm Teacher❤️`, `This web for checkname😊`, `Let's do it !!!`];
+    const toRotate = [`We're Teacher❤️`, `This web for checkname😊`, `Let's do it !!!`];
     const [text, setText] = useState('');
     const [delta, setDelta] = useState(200 - Math.random()*100)
     const period = 2000;
@@ -61,7 +61,7 @@ const Home=()=>{
                             <TrackVisibility>
                             {({isVisible}) =>
                             <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                            <h1>{` Hello I'm {User name}. `}<br/>
+                            <h1>{` Welcome to STCheck yung `}<br/>
                             <span className="text-wrap text-amber-300">{text}</span></h1>
                             </div>}
                             </TrackVisibility>
@@ -72,7 +72,7 @@ const Home=()=>{
                             officia sit vitae quo, eum similique?
                         </p>
                         <div className="mt-6">
-                            <a href="/Dashboard" className="px-6 py-3 font-bold text-white bg-blue-400 rounded-lg mr-4 text-sm">
+                            <a href="/Login" className="px-6 py-3 font-bold text-white bg-blue-400 rounded-lg mr-4 text-sm">
                             Get Started
                             </a>
                         </div>

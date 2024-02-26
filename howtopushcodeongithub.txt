@@ -1,0 +1,25 @@
+case new repo
+    git init
+    git add README.md
+    git add .
+    git commit -m "message"
+    git branch -M main
+    git remote add origin {my path repo}
+    git push -u origin main
+
+case add code
+    git add . or {name file}
+    git commit -m "{commit message}"
+    git push -u origin main
+
+package.json
+  "name": "client",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
