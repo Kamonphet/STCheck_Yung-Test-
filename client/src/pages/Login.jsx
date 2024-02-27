@@ -34,7 +34,7 @@ const Login = () => {
                 <p>Enter your information to register</p>
               </div>
               <div>
-                {JSON.stringify(state)}
+                {/* {JSON.stringify(state)} */}
                 <form onSubmit={SubmitForm}>
                     <div class="flex -mx-3">
                         <div class="w-full px-3 mb-5">

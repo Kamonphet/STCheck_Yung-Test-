@@ -4,10 +4,10 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from "../assets/logo.png"
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Dashboard', href: '/dashboard', current: true },
+  { name: 'Student', href: '#', current: false },
+  { name: 'Game', href: '#', current: false },
+  { name: 'Report', href: '#', current: false },
 ]
 
 function classNames(...classes) {
@@ -115,7 +115,7 @@ export default function Navbar_main() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/login"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out

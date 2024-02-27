@@ -5,7 +5,7 @@ const roomModel = require('../model/roomModel')
 const {v4: uuidv4} = require('uuid')
 
 // save data
-exports.create = async =(req,res)=>{
+exports.create = async (req,res)=>{
     const {classroom, subject, profile} = req.body
     // let slug = uuidv4()
     let slug = slugify(classroom+' '+subject)
