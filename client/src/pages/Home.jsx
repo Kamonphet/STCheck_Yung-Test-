@@ -2,7 +2,6 @@ import React, {useState, useEffect } from "react";
 import About from "./About";
 import Service from "./Service";
 import Contract from "./Contract";
-import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
 import checklist2 from "../assets/checklist2.gif"
 import ScrollButton from "../component/ScrollButton";

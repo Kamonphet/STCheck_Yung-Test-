@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const navigate = useNavigate()
 
   const [state, setState] = useState({
     fname: "",
@@ -28,7 +26,7 @@ const Register = () => {
     .then(response=>{
       Swal.fire("Great!", "Your user has been register successfully", "success");
       setTimeout(() => {
-        navigate('/login')
+        window.location.href = "/Login";
       }, 1000);
     }).catch(err=>{
       Swal.fire('แจ้งเตือน',err.response.data.msg,'error')
