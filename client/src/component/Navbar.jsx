@@ -4,6 +4,7 @@ import {HiMenuAlt1, HiX} from "react-icons/hi"
 import Navlinks from './Navlinks.jsx'
 import { motion } from "framer-motion";
 import logo from "../assets/logo.png"
+import { isLoggedIn } from '../middleware/authMiddle.js';
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -30,15 +31,17 @@ const Navbar = () => {
               return <Navlinks key={navLink.id} {...navLink} />;
             })}
           </div>
-          <div className='flex items-center gap-4'>
-            <a href='../Register' className="py-3 px-6 font-bold text-md border border-solid rounded-lg border-blue-400">
-              Sign Up
-            </a>
-            <a href='../Login' className="px-6 py-3 font-bold text-white bg-blue-400 rounded-lg text-md">
-              Sign in
-            </a>
-          </div>
-          
+          {!isLoggedIn() &&(
+            <div className='flex items-center gap-4'>
+              <a href='../Register' className="py-3 px-6 font-bold text-md border border-solid rounded-lg border-blue-400">
+                Sign Up
+              </a>
+              <a href='../Login' className="px-6 py-3 font-bold text-white bg-blue-400 rounded-lg text-md">
+                Sign in
+              </a>
+            </div>
+          )}
+            
           {toggle && (
             <motion.div
               initial={{ x: -500, opacity: 0 }}

@@ -72,7 +72,7 @@ const Home=()=>{
                             officia sit vitae quo, eum similique?
                         </p>
                         <div className="mt-6">
-                            <a href="/Login" className="px-6 py-3 font-bold text-white bg-blue-400 rounded-lg mr-4 text-sm">
+                            <a href="/dashboard" className="px-6 py-3 font-bold text-white bg-blue-400 rounded-lg mr-4 text-sm">
                             Get Started
                             </a>
                         </div>

@@ -42,6 +42,16 @@ exports.create = async (req,res)=>{
     }
 }
 
+// exports.getAllroombyid = async (req, res) => {
+//     try {
+//         const room = await roomModel.findOne({id});
+//         res.json(room);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ message: 'Error fetching blogs' });
+//     }
+// }
+
 // ดึงข้อมูลที่สนใจอ้างอิงตาม slug
 exports.singleRoom=async (req,res)=>{
     const { slug } = req.params;

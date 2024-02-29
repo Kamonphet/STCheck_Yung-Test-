@@ -8,9 +8,10 @@ import '../loading.css'
 import axios from "axios";
 import defaultPic from "../assets/defpic.jpg"
 import Swal from "sweetalert2";
+import { isLoggedIn } from "../middleware/authMiddle";
 
 const Dashboard = () => {
-    
+    isLoggedIn()
     const [openModal, setOpenModal] = useState(false)
 
     // get classroom data

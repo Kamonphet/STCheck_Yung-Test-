@@ -1,103 +1,145 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate()
+
+  const [state, setState] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+  });
+
+  const { fname, lname, email, password } = state;
+
+  const inputValue = (name) => (event) => {
+    setState({ ...state, [name]: event.target.value });
+  };
+
+  const SubmitForm = (e) => {
+    e.preventDefault();
+    // console.table({ user, password });
+    axios.post(`http://localhost:5000/api/register`,{fname, lname, email, password})
+    .then(response=>{
+      Swal.fire("Great!", "Your user has been register successfully", "success");
+      setTimeout(() => {
+        navigate('/login')
+      }, 1000);
+    }).catch(err=>{
+      Swal.fire('แจ้งเตือน',err.response.data.msg,'error')
+    })
+  };
+
+
+
   return (
     <div className="font-Poppins">
-      <div class="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
+      <div className="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
         <div
-          class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden"
+          className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden"
           style={{ maxWidth: "1000px" }}
         >
-          <div class="md:flex w-full">
-            <div class="hidden md:block w-1/2 bg-indigo-500 py-10 px-10"></div>
-            <div class="md:w-1/2 py-5 md:px-10">
+          <div className="md:flex w-full">
+            <div className=" md:block w-1/2 bg-indigo-500">
+              <img src="https://source.unsplash.com/random?wallpapers" className="h-full"/>
+            </div>
+            <div className="md:w-1/2 py-5 md:px-10">
               <img src={logo} alt="" className="w-1/2 ml-28" />
-              <div class="text-center mb-10">
-                <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
+              <div className="text-center mb-10">
+                <h1 className="font-bold text-3xl text-gray-900">REGISTER</h1>
                 <p>Enter your information to register</p>
               </div>
-              <div>
-                <div class="flex -mx-3">
-                  <div class="w-1/2 px-3 mb-5">
-                    <label for="" class="text-xs font-semibold px-1">
+              <form onSubmit={SubmitForm}>
+                <div className="flex -mx-3">
+                  <div className="w-1/2 px-3 mb-5">
+                    <label className="text-xs font-semibold px-1">
                       First name
                     </label>
-                    <div class="flex">
-                      <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                        <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
                       </div>
                       <input
                         type="text"
-                        class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="John"
+                        value={fname}
+                        onChange={inputValue("fname")}
                       />
                     </div>
                   </div>
-                  <div class="w-1/2 px-3 mb-5">
-                    <label for="" class="text-xs font-semibold px-1">
+                  <div className="w-1/2 px-3 mb-5">
+                    <label className="text-xs font-semibold px-1">
                       Last name
                     </label>
-                    <div class="flex">
-                      <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                        <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
                       </div>
                       <input
                         type="text"
-                        class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="Smith"
+                        value={lname}
+                        onChange={inputValue("lname")}
                       />
                     </div>
                   </div>
                 </div>
-                <div class="flex -mx-3">
-                  <div class="w-full px-3 mb-5">
-                    <label for="" class="text-xs font-semibold px-1">
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-5">
+                    <label  className="text-xs font-semibold px-1">
                       Email
                     </label>
-                    <div class="flex">
-                      <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                        <i class="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
                       </div>
                       <input
                         type="email"
-                        class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="johnsmith@example.com"
+                        value={email}
+                        onChange={inputValue("email")}
                       />
                     </div>
                   </div>
                 </div>
-                <div class="flex -mx-3">
-                  <div class="w-full px-3 mb-12">
-                    <label for="" class="text-xs font-semibold px-1">
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-12">
+                    <label  className="text-xs font-semibold px-1">
                       Password
                     </label>
-                    <div class="flex">
-                      <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                        <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-lock-outline text-gray-400 text-lg"></i>
                       </div>
                       <input
                         type="password"
-                        class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="************"
+                        value={password}
+                        onChange={inputValue("password")}
                       />
                     </div>
                   </div>
                 </div>
-                <div class="flex mx-3">
-                  <div class="w-full px-3 mb-5 ml-4 space-x-4">
-                    <button class=" w-40 max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 text-white rounded-lg px-3 py-3 mb-3">
-                      Register
-                    </button>
+                <div className="flex mx-3">
+                  <div className="w-full px-3 mb-5 ml-4 space-x-4">
+                    <input type="submit" className=" w-40 max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 text-white rounded-lg px-3 py-3 mb-3" value="Register"/>
                     <Link to={`/`}>
-                      <button class=" w-40 max-w-xs mx-auto bg-red-500 hover:bg-red-700  text-white rounded-lg px-3 py-3">
+                      <button className=" w-40 max-w-xs mx-auto bg-red-500 hover:bg-red-700  text-white rounded-lg px-3 py-3">
                         Cancel
                       </button>
                     </Link>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

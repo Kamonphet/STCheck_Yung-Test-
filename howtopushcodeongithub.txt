@@ -23,3 +23,24 @@ package.json
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+
+  alt+shift+arrow down = dupicate
+
+
+  // exports.auth = async (req,res,next)=>{
+
+//     try{
+//         const token = req.headers["authtoken"]
+//         if(!token){
+//             return res.status(401).json({msg:"No Token Provided"})
+//         }
+
+//         const decoded = jwt.verify(token,process.env.JWT_SECRET)
+//         req.user = decoded.user;
+//         next();
+
+//     }catch (err){
+//         console.log(err);
+//         res.send('Token invalid').status(500)
+//     }
+// }

@@ -4,6 +4,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const route_room = require('./routes/route_room')
 const route_auth = require( './routes/route_auth' )
+const route_student = require('./routes/route_student');
 
 require('dotenv').config()
 
@@ -34,6 +35,7 @@ app.use(morgan('dev'))
 
 app.use('/api',route_room)
 app.use('/api',route_auth)
+app.use('/api',route_student)
 
 //connect sever
 const port = process.env.PORT || 8000

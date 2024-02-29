@@ -7,7 +7,7 @@ exports.login= async (req,res)=>{
         // check user
         const {email, password} = req.body;
         let  user = await userModel.findOneAndUpdate({ email }, {new: true});
-        console.log(user);
+        // console.log(user);
 
         if(user){
             const isMatch = await bcrypt.compare(password, user.password)
@@ -20,17 +20,18 @@ exports.login= async (req,res)=>{
                 user:{
                     name: user.fname + ' '+ user.lname,
                     id : user._id,
-                    email: user.email
+                    email: user.email,
+                    role: user.role
                 }
             }
             // gen token
-            jwt.sign(payload.user , process.env.JWT_SECRET , {expiresIn: "2h"},(err, token)=>{
+            jwt.sign(payload , process.env.JWT_SECRET , {expiresIn: "2h"},(err, token)=>{
                 if(err) throw err;
-                res.json( {token, payload})
+                return res.json( {token, payload})
             })
             
         } else {
-            return res.status(404).send('User Not Found!')
+            return res.status(401).send({msg:'User Not Found!'})
         }
 
     }catch (err){
@@ -47,7 +48,7 @@ exports.register= async (req,res)=>{
         let user = await userModel.findOne({email})
         
         if(user){
-            return res.status(400).send("User already exists")
+            return res.status(400).send({msg:"User already exists"})
         }
 
         // Encrypt
@@ -67,5 +68,15 @@ exports.register= async (req,res)=>{
     }catch (err){
         console.log('Error in registering user: ', err);
         res.status(500).send('Server error');
+    }
+}
+
+exports.currentUser =async(req,res)=>{
+    try{
+        // console.log("Current User is : ", req.user);
+        const user = await userModel.findOne({email:req.user.email}).select('-password').exec()
+        res.send(user)
+    }catch{
+        res.status(500).json({message:'server error'});
     }
 }

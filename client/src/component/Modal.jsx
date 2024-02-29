@@ -27,7 +27,7 @@ const Modal =({closeModal})=> {
   // submit form in db
   const submitForm=(e)=>{
     e.preventDefault();
-    console.log('API = http://localhost:5000/api')
+    // console.log('API = http://localhost:5000/api')
     axios.post(`http://localhost:5000/api/createRoom`,{classroom, subject, profile}).then(response=>{
         closeModal()
       Swal.fire({
@@ -43,7 +43,8 @@ const Modal =({closeModal})=> {
     }).catch(err=>{
         Swal.fire('แจ้งเตือน',err.response.data.error,'error')
     })
-}
+  }
+  
   return (
     <div className="modalBackground font-Poppins">
         <div className="modalContainer">

@@ -2,10 +2,12 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from "../assets/logo.png"
+import { Logout } from '../middleware/authMiddle'
+import Swal from 'sweetalert2'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', current: true },
-  { name: 'Student', href: '#', current: false },
+  { name: 'Check Name', href: '#', current: false },
   { name: 'Game', href: '#', current: false },
   { name: 'Report', href: '#', current: false },
 ]
@@ -13,6 +15,24 @@ const navigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+
+const ifLogout=()=>{
+  Swal.fire({
+    title: 'แน่ใจนะว่าจะออก?',
+    text: "มันก็ดีนะ แต่! คิดอีกที",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'ใช่ ออกเลย',
+    cancelButtonText: 'ไม่ เดี๋ยวคิดอีกที'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Logout()
+    }
+  })
+}
+
 
 export default function Navbar_main() {
   return (
@@ -34,7 +54,7 @@ export default function Navbar_main() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <a href='/' className="flex flex-shrink-0 items-center ">
+                <a href='/dashboard' className="flex flex-shrink-0 items-center ">
                   <img
                     className="h-20 w-auto mt-2"
                     src={logo}
@@ -114,12 +134,12 @@ export default function Navbar_main() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="/login"
+                          <button
+                            onClick={()=>ifLogout()}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out
-                          </a>
+                          </button>
                         )}
                       </Menu.Item>
                     </Menu.Items>
