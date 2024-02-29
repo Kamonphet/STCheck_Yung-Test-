@@ -8,7 +8,6 @@ import ScrollButton from "../component/ScrollButton";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen'
 
-
 // create ไฟล์ แต่ละหน้าเร็ว ๆ
 // rfce
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import axios from "axios";
 import Swal from "sweetalert2";
+import wallpaper from "../assets/wallpaper.jpg";
 
 const Register = () => {
 
@@ -36,13 +37,13 @@ const Register = () => {
 
 
   return (
-    <div className="font-Poppins">
+    <div className="font-Poppins" style={{ backgroundImage: `url(${wallpaper})` }}>
       <div className="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
         <div
           className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden"
           style={{ maxWidth: "1000px" }}
         >
-          <div className="md:flex w-full">
+          <div className="md:flex w-full bg-white">
             <div className=" md:block w-1/2 bg-indigo-500">
               <img src="https://source.unsplash.com/random?wallpapers" className="h-full"/>
             </div>
