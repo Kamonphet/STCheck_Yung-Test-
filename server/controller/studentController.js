@@ -1,11 +1,10 @@
 const studentModel = require('../model/studentModel')
 
-
 // create student
 exports.createStudent = async(req, res) => {
-    const {lekti, fname, lname, classroom} = req.body
+    const {lekti, fname, lname, classroom, slug} = req.body
 
-    await studentModel.create({lekti, fname, lname, classroom})
+    await studentModel.create({lekti, fname, lname, classroom,  slug})
     .then((data)=>{
         res.status(201).json({message : "Data has been added"})
     }).catch((err)=>{  
@@ -22,6 +21,16 @@ exports.createStudent = async(req, res) => {
         console.error(err);
         res.status(500).json({ message: 'Error fetching blogs' });
     }
+}
+
+// get data form classroom
+exports.getStudentformclassroom=async (req,res)=>{
+    const { slug } = req.params;
+    await studentModel.find({slug})
+    .then((stdd)=>{
+        if(!stdd) return res.status(404).json({message : "Notfound!"})
+        res.status(200).json(stdd)
+    }).catch((err)=>console.log(err))
 }
 
 

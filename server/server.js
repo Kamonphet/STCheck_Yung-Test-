@@ -6,6 +6,7 @@ const route_room = require('./routes/route_room')
 const route_auth = require( './routes/route_auth' )
 const route_student = require('./routes/route_student');
 
+
 require('dotenv').config()
 
 // const router = express.Router()
@@ -36,6 +37,7 @@ app.use(morgan('dev'))
 app.use('/api',route_room)
 app.use('/api',route_auth)
 app.use('/api',route_student)
+app.use('/api',route_checkName)
 
 //connect sever
 const port = process.env.PORT || 8000

@@ -6,6 +6,8 @@ import Dashboard from "./pages/Dashboard";
 import Singleroom from "./pages/Singleroom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ChknTable from "./pages/ChknTable";
+import Game from "./pages/Game";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,14 @@ const router = createBrowserRouter([
   {
     path: "/room/:slug",
     element: <Singleroom/>
+  },
+  {
+    path: "/checkname/:slug",
+    element: <ChknTable/>
+  },
+  {
+    path: "/game/:slug",
+    element: <Game/>
   },
   {
     path: "/Login",

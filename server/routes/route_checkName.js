@@ -1,10 +1,7 @@
 const express =  require('express');
 const router = express.Router();
-const {createStudent, getAllStudent,singleStudent,updateStudent,deleteStudent, getStudentformclassroom} = require('../controller/studentController')
 
-
-
-// CRUD นักเรียน
+// CRUD เช็คชื่อ
 router.post('/createStudent',createStudent)
 router.get('/students',getAllStudent)
 router.get('/student/:_id',singleStudent)

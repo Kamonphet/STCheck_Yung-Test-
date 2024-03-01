@@ -8,6 +8,10 @@ const studentSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    slug:{
+        type: String,
+        lowercase:true
+    }
 },{timestamps:true})
 
 module.exports = mongoose.model('student',studentSchema)
