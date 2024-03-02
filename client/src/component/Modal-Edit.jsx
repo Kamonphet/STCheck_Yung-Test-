@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import "../Modal.css";
+import "../Modal_edit.css";
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom';
@@ -62,12 +62,12 @@ const ModalEdit =({closeModal})=> {
     <div className="modalBackground font-Poppins">
         <div className="modalContainer mb-10">
             <div className="titleCloseBtn">
-                <h1 className="text-3xl mt-5 text-blue-500 font-bold">Edit classroom</h1>
+                <h1 className="text-3xl mt-5 text-blue-500 font-bold">แก้ไขข้อมูลห้องเรียน</h1>
                 <button onClick={() => {closeModal(false);}}> x </button>
             </div>
             {/* {JSON.stringify(state)} */}
-        <div className="flex items-center justify-center p-3">
-        <div className="mx-auto w-full max-w-[550px] bg-white">
+        <div className=" p-3">
+        <div className=" bg-white">
           <form className="py-6 px-9" onSubmit={submitForm}>
             <div className="mb-5">
               <label className="mb-3 block text-base font-medium text-[#07074D]">ชื่อห้องเรียน</label>
@@ -76,9 +76,22 @@ const ModalEdit =({closeModal})=> {
 
             <div className="mb-5">
               <label  className="mb-3 block text-base font-medium text-[#07074D]">ชื่อวิชา</label>
-              <input type="text" placeholder="Ex.วิทยาการคำนวณ" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none"value={subject} onChange={inputValue('subject')} />
+              <select class="border border-[#e0e0e0] p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" onChange={inputValue('subject')} required>
+                <option value="0">---</option>
+                <option value="Thai Language">ภาษาไทย</option>
+                <option value="Mathematics">คณิตศาสตร์</option>
+                <option value="Science">วิทยาศาสตร์</option>
+                <option value="Social Studies">สังคมศึกษา ศาสนา และวัฒนธรรม</option>
+                <option value="Health and Physical Education">สุขศึกษาและพลศึกษา</option>
+                <option value="Arts">ศิลปะ</option>
+                <option value="Vocational Education">การงานพื้นฐานอาชีพ</option>
+                <option value="English">ภาษาอังกฤษ</option>
+                <option value="Foreign Language">ภาษาต่างประเทศ</option>
+                <option value="Computer Science">วิทยาการคำนวณ</option>
+                <option value="Design and Technology">การออกแบบและเทคโนโลยี</option>
+              </select>
             </div>
-            <input type="submit" className="hover:bg-blue-400 w-full rounded-md bg-blue-500 py-3 px-8 text-center text-base font-semibold text-white outline-none" value="edit Classroom"/>
+            <input type="submit" className="hover:bg-blue-400 w-full rounded-md bg-blue-500 py-3 px-8 text-center text-base font-semibold text-white outline-none" value="แก้ไขข้อมูล"/>
 
           </form>
           </div>

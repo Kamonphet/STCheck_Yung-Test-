@@ -30,6 +30,7 @@ const Login = () => {
       auth(response)
       // console.log(response.data.token)
       // console.log(response.data.payload.user)
+      
       setTimeout(() => {
         navigate('/dashboard')
       }, 1000);

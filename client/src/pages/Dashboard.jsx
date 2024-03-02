@@ -9,9 +9,13 @@ import axios from "axios";
 import defaultPic from "../assets/defpic.jpg"
 import Swal from "sweetalert2";
 import { isLoggedIn } from "../middleware/authMiddle";
+import wallpaper2 from "../assets/wallpaper2.jpg";
+import { getUser } from "../middleware/authMiddle";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const Dashboard = () => {
     isLoggedIn()
+    const user = getUser();
     const [openModal, setOpenModal] = useState(false)
 
     // get classroom data
@@ -33,6 +37,7 @@ const Dashboard = () => {
         }, 1000);
         fetchData()
     },[])
+
 
     // function confirmDelete classroom
     const confirmDelete =(slug)=>{
@@ -64,27 +69,27 @@ const Dashboard = () => {
         }).catch(err=>console.log(err))
         
     }
-    
 
   return (
     <div className="loading">
         {
-            loading ?
-            <h2><PacmanLoader color="hsla(204, 100%, 71%, 1)" loading={loading} size={50}/></h2>
-            :
-            <div className="bg-white">
+            // loading ?
+            // <h2><PacmanLoader color="hsla(204, 100%, 71%, 1)" loading={loading} size={50}/></h2>
+            // :
+            <div className="bg-white"style={{ backgroundImage: `url(${wallpaper2})`, backgroundSize: '100%' }}>
                 {openModal && <Modal closeModal={setOpenModal}/>}
                 <Navbar_main />
                 <div className="mx-20 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                    <h1 className="text-3xl font-bold">My Classroom</h1>
+                    <h1 className="text-3xl font-bold">ห้องเรียนของนาย {user.username}</h1>
+                    <p>ระดับสมาชิก: {user.role}</p>
                     <br />
                     <div className="grid grid-cols-1 gap-x-20 gap-y-10 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                        <button onClick={() => setOpenModal(true)} className="justify-items-center group openModalBtn w-1/2">
-                            <div className="  overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                        <button onClick={() => setOpenModal(true)} className="px-10 w-5/6 group openModalBtn ">
+                            <div className=" overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                             <img
                                 src={add}
                                 alt=""
-                                className="object-cover object-center group-hover:opacity-75"
+                                className="object-cover object-center group-hover:scale-105"
                             />
                             </div>
                             <h3 className="mt-4 text-sm text-gray-700"></h3>
@@ -92,20 +97,23 @@ const Dashboard = () => {
                         </button>
                     {classrooms.map((classroom) => (
                         <div key={classroom.id} className="group">
-                        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7 hover:scale-105">
                            <Link to={`/room/${classroom.slug}`}>
                             <img
                             src={defaultPic}
                             alt=''
-                            className="h-full w-full object-cover object-center group-hover:opacity-75"
+                            className="h-full w-full object-cover object-center"
                             />
                             </Link>
                         </div>
-                        <h3 className="mt-4 text-sm text-gray-700">{classroom.classroom}</h3>
+                        <div className="grid grid-cols-2 ">
+                            <h3 className="mt-4 text-2xl text-gray-700"> ห้องเรียน {classroom.classroom}</h3>
+                            <button className="text-red-400 -mx-20 mt-4" onClick={()=>confirmDelete(classroom.slug)}><svg className="" width="40" viewBox="1 1 24 15 "><RiDeleteBin6Fill /></svg></button>
+                        </div>
+                         
                         <p className="mt-1 text-lg font-medium text-gray-900">
-                            {classroom.subject}
+                           วิชา {classroom.subject}
                         </p>
-                        <button className="text-red-400" onClick={()=>confirmDelete(classroom.slug)}>ลบห้องเรียน</button>
                         </div>
                     ))}
                     </div>

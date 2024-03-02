@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
 const checkNameSchema = mongoose.Schema({
-    lekti: Number,
+    lekti_id: String,
     mission : String,
-    check_ma : String,
-    check_kad : String,
-    check_la : String,
-    check_masai : String,
-    reason: String,
+    check_name : String,
+    reason: {
+        type: String,
+        default: "-"
+    },
     slug:{
         type: String,
         lowercase:true

@@ -8,6 +8,7 @@ import logo from "../assets/logo.png"
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState(null);
+
   useEffect(() => {
     const scrollActive = () => {
       setActive(window.scrollY > 20);
@@ -15,6 +16,8 @@ const Navbar = () => {
     window.addEventListener("scroll", scrollActive);
     return () => window.removeEventListener("scroll", scrollActive);
   }, [active]);
+
+  
   return (
     <div className={`${active ? "shadow-lg bg-Solitude" : ""} fixed w-full top-0 left-0 z-20`}>
       <div>

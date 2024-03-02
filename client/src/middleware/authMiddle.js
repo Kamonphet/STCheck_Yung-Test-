@@ -4,7 +4,7 @@ export const auth = async(response,next)=>{
         sessionStorage.setItem('token', JSON.stringify(response.data.token));
         sessionStorage.setItem('username', JSON.stringify(response.data.payload.user.name));
         sessionStorage.setItem('id', JSON.stringify(response.data.payload.user.id));
-        sessionStorage.setItem('e-mail', JSON.stringify(response.data.payload.user.email));
+        sessionStorage.setItem('email', JSON.stringify(response.data.payload.user.email));
         sessionStorage.setItem('role', JSON.stringify(response.data.payload.user.role));
     }
     next()
@@ -14,13 +14,11 @@ export const auth = async(response,next)=>{
 // ดึงข้อมูล user
 export const getUser = ()=> {
         if(sessionStorage.getItem("username")){
-            return JSON.parse(sessionStorage.getItem("username"));
-        }else if(sessionStorage.getItem("id")){
-            return JSON.parse(sessionStorage.getItem("id"));
-        }else if(sessionStorage.getItem("e-mail")){
-            return JSON.parse(sessionStorage.getItem("e-mail"));
-        }else if(sessionStorage.getItem("role")){
-            return JSON.parse(sessionStorage.getItem("role"));
+            const username = JSON.parse(sessionStorage.getItem("username"));
+            const id= JSON.parse(sessionStorage.getItem("id"));
+            const email=JSON.parse(sessionStorage.getItem("email"));
+            const role = JSON.parse(sessionStorage.getItem("role"));
+            return {username:username,id:id,email:email,role:role};
         }else{
             return false;
         }

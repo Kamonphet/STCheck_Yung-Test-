@@ -1,16 +1,13 @@
+import React, { useState, useEffect } from 'react'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from "../assets/logo.png"
 import { Logout } from '../middleware/authMiddle'
 import Swal from 'sweetalert2'
+import { useParams } from 'react-router-dom';
+import { getUser } from '../middleware/authMiddle'
 
-const navigation = [
-  { name: 'Dashboard', href: '/dashboard', current: true },
-  { name: 'Check Name', href: '#', current: false },
-  { name: 'Game', href: '#', current: false },
-  { name: 'Report', href: '#', current: false },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -32,15 +29,38 @@ const ifLogout=()=>{
     }
   })
 }
-
+// if load  component is Login then getitem sesstionStorage
 
 export default function Navbar_main() {
+
+  let {slug} = useParams()
+
+  const user = getUser()
+
+  const navigation = [
+    { name: 'Dashboard', href: '/dashboard', current: true },
+    { name: 'Check Name', href: `/checkname/${slug}`, current: false },
+    { name: 'Game', href: `/game/${slug}`, current: false },
+    { name: 'Report', href: '#', current: false },
+  ]
+
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    const scrollActive = () => {
+      setActive(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", scrollActive);
+    return () => window.removeEventListener("scroll", scrollActive);
+  }, [active]);
+
+
   return (
     <Disclosure as="nav" className="bg-blue-400">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+          <div className={`${active ? "shadow-lg bg-blue-400" : "bg-white"} fixed min-w-full top-0 left-0 z-20 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 `}>
+            <div className={`${active ? "py-2 transition-all duration-500 text-white" : "py-4"} relative flex h-16 items-center justify-between`}>
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -68,8 +88,8 @@ export default function Navbar_main() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-amber-300',
+                          'rounded-md px-3 py-2 text-md font-bold'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -88,7 +108,7 @@ export default function Navbar_main() {
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
-
+                             
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
@@ -97,7 +117,7 @@ export default function Navbar_main() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src="https://source.unsplash.com/random?wallpapers"
                         alt=""
                       />
                     </Menu.Button>
@@ -111,22 +131,24 @@ export default function Navbar_main() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 ">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          <div
+                            className={classNames(active ? 'bg-blue-200' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Your Profile
-                          </a>
+                            <h1 className='font-bold'>ข้อมูลของคุณ</h1>
+                            <p> User: {user.username}</p>
+                            <p>Email: {user.email}</p>
+                            <p>ระดับสมาชิก: {user.role}</p>
+                          </div>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-blue-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Settings
                           </a>
@@ -136,7 +158,7 @@ export default function Navbar_main() {
                         {({ active }) => (
                           <button
                             onClick={()=>ifLogout()}
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-blue-100' : '', 'block px-4 py-2 w-full text-start text-sm text-gray-700')}
                           >
                             Sign out
                           </button>
