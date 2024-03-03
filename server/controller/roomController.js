@@ -23,7 +23,7 @@ exports.create = async (req,res)=>{
     // insert into DB
     roomModel.create({classroom, subject, profile, slug}).then((result) => {
         console.log('Data inserted', result)
-        res.status(201).json({message : "Data has been added" ,
+        res.status(201).json({message : "ข้อมูลห้องเรียนถูกเพิ่มแล้ว" ,
         id : result._id })
     }).catch((err) => {
         res.status(400).json({error:" เกิดข้อผิดพลาด มีข้อมูลซ้ำ"})        
@@ -38,7 +38,7 @@ exports.create = async (req,res)=>{
         res.json(room);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Error fetching blogs' });
+        res.status(500).json({ message: 'ดึงข้อมูลห้องเรียนไม่ได้!' });
     }
 }
 
@@ -57,7 +57,7 @@ exports.singleRoom=async (req,res)=>{
     const { slug } = req.params;
     await roomModel.findOne({slug})
     .then((room)=>{
-        if(!room) return res.status(404).json({message : "Notfound!"})
+        if(!room) return res.status(404).json({message : "หาห้องเรียนไม่เจออะ!"})
         res.status(200).json(room)
     }).catch((err)=>console.log(err))
 }
@@ -67,9 +67,9 @@ exports.deleteRoom=async (req,res)=>{
     const { slug } = req.params;
     await roomModel.findOneAndDelete({slug})
     .then(()=>{
-        res.status(200).json({message : "Deleted Successfully!"})
+        res.status(200).json({message : "ลบข้อมูลห้องเรียนสำเร็จ!"})
     }).catch((err)=>{
-        res.status(400).json({message : "Failed to Delete!"})
+        res.status(400).json({message : "ลบข้อมูลห้องเรียนไม่สำเร็จ!"})
     })
 }
 
@@ -82,7 +82,7 @@ exports.updateRoom = async (req, res) => {
         // res.status(200).json(room)
     }).catch((err)=>{   
         console.log(err)
-        res.status(500).json({message:"Faild To Update"})
+        res.status(500).json({message:"อัพเดตห้องเรียนล้มเหลว"})
     })
 }
 

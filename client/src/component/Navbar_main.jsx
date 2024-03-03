@@ -41,7 +41,7 @@ export default function Navbar_main() {
     { name: 'หน้าหลัก', href: '/dashboard', current: true },
     { name: 'การเช็คชื่อ', href: `/checkname/${slug}`, current: false },
     { name: 'การสุ่มชื่อ', href: `/game/${slug}`, current: false },
-    { name: 'ระบบแจ้งการใช้งาน', href: '#', current: false },
+    { name: 'ระบบแจ้งการใช้งาน', href: '/report', current: false },
   ]
 
   const [active, setActive] = useState(null);
@@ -56,7 +56,7 @@ export default function Navbar_main() {
 
 
   return (
-    <Disclosure as="nav" className="bg-blue-400">
+    <Disclosure as="nav" className="bg-blue-400 font-Kanit">
       {({ open }) => (
         <>
           <div className={`${active ? "shadow-lg bg-blue-400" : "bg-white"} fixed min-w-full top-0 left-0 z-20 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 `}>
@@ -89,7 +89,7 @@ export default function Navbar_main() {
                         href={item.href}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-amber-300',
-                          'rounded-md px-3 py-2 text-md font-bold'
+                          'rounded-md px-3 py-2 text-lg font-bold'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -102,7 +102,7 @@ export default function Navbar_main() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
-                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white"
+                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-amber-400"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
@@ -131,11 +131,11 @@ export default function Navbar_main() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 ">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-60 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 ">
                       <Menu.Item>
                         {({ active }) => (
                           <div
-                            className={classNames(active ? 'bg-blue-200' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-blue-200' : '', 'block px-4 py-2 text-md text-gray-700')}
                           >
                             <h1 className='font-bold'>ข้อมูลของคุณ</h1>
                             <p> User: {user.username}</p>

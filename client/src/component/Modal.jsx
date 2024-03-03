@@ -31,8 +31,8 @@ const Modal =({closeModal})=> {
     axios.post(`http://localhost:5000/api/createRoom`,{classroom, subject, profile}).then(response=>{
         closeModal()
       Swal.fire({
-            title: "Great!",
-            text: "Your classroom has been created successfully",
+            title: "สำเร็จ!",
+            text: "ห้องเรียนของคุณ สร้างเสร็จแล้วเรียบร้อย",
             icon: "success"
         });
         setState({...state,classroom:"",subject:"",profile:""})
@@ -49,10 +49,10 @@ const Modal =({closeModal})=> {
     <div className="modalBackground font-Poppins">
         <div className="modalContainer">
             <div className="titleCloseBtn">
-                <h1 className="text-3xl mt-5 text-blue-500 font-bold">Create classroom</h1>
+                <h1 className="text-3xl mt-5 text-blue-500 font-bold">เพิ่มห้องเรียนของครู</h1>
                 <button onClick={() => {closeModal(false);}}> x </button>
             </div>
-            {JSON.stringify(state)}
+            {/* {JSON.stringify(state)} */}
         <div className="flex items-center justify-center p-3">
         <div className="mx-auto w-full max-w-[550px] bg-white">
           <form className="py-6 px-9" onSubmit={submitForm}>

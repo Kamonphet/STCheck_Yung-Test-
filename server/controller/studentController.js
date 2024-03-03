@@ -6,7 +6,7 @@ exports.createStudent = async(req, res) => {
 
     await studentModel.create({lekti, fname, lname, classroom,  slug})
     .then((data)=>{
-        res.status(201).json({message : "Data has been added"})
+        res.status(201).json({message : "ข้อมูลถูกเพิ่มเรียบร้อย"})
     }).catch((err)=>{  
         res.status(400).json({error:" เกิดข้อผิดพลาด ใส่ข้อมูลอีกครั้ง"})
     });
@@ -19,7 +19,7 @@ exports.createStudent = async(req, res) => {
         res.json(std);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Error fetching blogs' });
+        res.status(500).json({ message: 'ไม่สามารถดึงข้อมูลได้' });
     }
 }
 
@@ -28,7 +28,7 @@ exports.getStudentformclassroom=async (req,res)=>{
     const { slug } = req.params;
     await studentModel.find({slug})
     .then((stdd)=>{
-        if(!stdd) return res.status(404).json({message : "Notfound!"})
+        if(!stdd) return res.status(404).json({message : "หาข้อมูลนักเรียนไม่เจออะ!"})
         res.status(200).json(stdd)
     }).catch((err)=>console.log(err))
 }
@@ -39,7 +39,7 @@ exports.singleStudent=async (req,res)=>{
     const { _id } = req.params;
     await studentModel.findOne({_id})
     .then((std)=>{
-        if(!std) return res.status(404).json({message : "Notfound!"})
+        if(!std) return res.status(404).json({message : "หาข้อมูลนักเรียนไม่เจออะ!"})
         res.status(200).json(std)
     }).catch((err)=>console.log(err))
 }
@@ -49,11 +49,11 @@ exports.updateStudent = async (req, res) => {
     const {lekti, fname, lname, classroom} = req.body
     studentModel.findOneAndUpdate({_id},{lekti, fname, lname, classroom},{new:true})
     .then((std)=>{
-        res.send('Updated')
+        res.send('อัพเดตรายชื่อนักเรียนละ!')
         // res.status(200).json(room)
     }).catch((err)=>{   
         console.log(err)
-        res.status(500).json({message:"Faild To Update"})
+        res.status(500).json({message:"อัพเดตข้อมูลนักเรียนล้มเหลว"})
     })
 }
 
@@ -62,8 +62,8 @@ exports.deleteStudent=async (req,res)=>{
     const { _id } = req.params;
     await studentModel.findOneAndDelete({_id})
     .then(()=>{
-        res.status(200).json({message : "Deleted Successfully!"})
+        res.status(200).json({message : "ลบรายชื่อนักเรียนเรียบร้อย!"})
     }).catch((err)=>{
-        res.status(400).json({message : "Failed to Delete!"})
+        res.status(400).json({message : "ลบข้อมูลนักเรียนไม่ได้อะ!"})
     })
 }

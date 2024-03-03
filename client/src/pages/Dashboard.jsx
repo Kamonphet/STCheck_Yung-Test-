@@ -71,7 +71,7 @@ const Dashboard = () => {
     }
 
   return (
-    <div className="loading">
+    <div className="loading font-Kanit">
         {
             loading ?
             <h2><PacmanLoader color="hsla(204, 100%, 71%, 1)" loading={loading} size={50}/></h2>
@@ -80,7 +80,7 @@ const Dashboard = () => {
                 {openModal && <Modal closeModal={setOpenModal}/>}
                 <Navbar_main />
                 <div className="mx-20 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                    <h1 className="text-3xl font-bold">ห้องเรียนของนาย {user.username}</h1>
+                    <h1 className="text-3xl font-bold">ห้องเรียนของครู {user.username}</h1>
                     <p>ระดับสมาชิก: {user.role}</p>
                     <br />
                     <div className="grid grid-cols-1 gap-x-20 gap-y-10 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">

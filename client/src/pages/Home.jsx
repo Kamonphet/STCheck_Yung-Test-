@@ -51,7 +51,7 @@ const Home=()=>{
     return(
         <div className="section h-screen" id="home">
             <Navbar/>
-            <div className="container font-Poppins">
+            <div className="container font-Kanit">
                 <ScrollButton/>
                 <div className="md:flex items-center justify-center">
                     <div>
@@ -66,12 +66,12 @@ const Home=()=>{
                             {/* This is <br /> the new way <br /> to learn online */}
                         </div>
                         <p className="text-sm leading-7 text-gray max-w-sm">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero
-                            officia sit vitae quo, eum similique?
+                            Lorem, ipsum dolor sit amet consectetur ฮั่นแน่ อ่านอยู่อ่อ  adipisicing elit. Vero
+                            officia sit vitae quo, eum similique? 
                         </p>
                         <div className="mt-6">
-                            <a href="/dashboard" className="px-6 py-3 font-bold text-white bg-blue-400 rounded-lg mr-4 text-sm">
-                            Get Started
+                            <a href="/dashboard" className="px-6 py-3 font-medium text-white bg-blue-400 rounded-lg mr-4 text-xl">
+                            เริ่มเลย!!!
                             </a>
                         </div>
                     </div>

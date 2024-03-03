@@ -9,6 +9,8 @@ import wallpaper3 from "../assets/wallpaper3.jpg";
 
 const ChknTable = () => {
     isLoggedIn();
+    window.scrollTo(0, 0);
+    
     let { slug } = useParams();
     const navigate = useNavigate();
 
@@ -40,7 +42,6 @@ const ChknTable = () => {
             setSingleroom(response.data);
         })
         .catch((err) => alert(err));
-        window.scrollTo(0, 0);
         fetchData();
         fetchdatacheckname();
     }, []);
@@ -75,7 +76,7 @@ const ChknTable = () => {
     return (
         <div className="min-h-screen " style={{ backgroundImage: `url(${wallpaper3})`, backgroundSize: '100%'}}>
             <Navbar_main />
-            <div className="container- p-10 font-Poppins">
+            <div className="container- p-10 font-Kanit">
                 <div className="bg-white opacity-80 rounded-lg mt-10 px-6 py-4 mx-10 my-5 max-w-lg">
                     <button className=" text-3xl font-bold mt-5" onClick={() => navigate(-1)}>
                     เช็คชื่อนักเรียน ห้อง {singleroom.classroom}

@@ -17,6 +17,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const Singleroom = () => {
     isLoggedIn()
+    window.scrollTo(0, 0);
     let { slug } = useParams();
     
     // get room data
@@ -38,7 +39,6 @@ const Singleroom = () => {
             setSingleroom(response.data);
         })
         .catch(err=>alert(err));
-        window.scrollTo(0, 0);
         fetchData()
     },[])
 
@@ -80,9 +80,8 @@ const Singleroom = () => {
         .then(respone=>{
             const {lekti, fname, lname, classroom} = respone.data
             setState({...state,lekti, fname, lname, classroom})
-            return true
         }).catch(err=>{
-            return false
+            console.log(err)
         })
     }
 
@@ -123,7 +122,7 @@ const Singleroom = () => {
             {openEditModal && <ModalEdit closeModal={setOpenEditModal}/>}
             
             <Navbar_main/>  
-            <div className="container- p-12 font-Poppins" >
+            <div className="container- p-12 font-Kanit" >
                 <div className="bg-amber-300 rounded-2xl mt-10 px-6 py-5 mx-10 my-5 max-w-lg">
                     <div className="grid grid-cols-2 ">
                         <Link to={'/dashboard'}><button className='text-3xl font-bold'>ห้อง {singleroom.classroom}</button></Link>
@@ -138,6 +137,7 @@ const Singleroom = () => {
                     <div className="bg-blue-100 mx-auto h-1/2 w-8/12 shadow-3xl rounded-3xl shadow-2xl mt-5">
                         <form className="p-12">
                             <h2 class="text-3xl font-bold mb-4">เช็คชื่อนักเรียน</h2>
+                            <h2 class="text-xs font-bold text-red-500 mb-4">***ให้ทำการกดข้อความบริเวณ icon ห้องเรียน เพื่อทำให้ข้อมูลห้องเรียนขึ้นเป็นสีเขียว</h2>
                             {/* {JSON.stringify(state)} */}
                             <div className="flex items-center text-lg mb-6 md:mb-8">
                                 <svg className="absolute ml-3" width="40" viewBox="0 0 24 18"><GoNumber/></svg>
@@ -164,10 +164,10 @@ const Singleroom = () => {
                         <div class="bg-white  rounded-2xl px-6 py-6 max-w-60 mt-5">
                             <h2 class="text-3xl font-medium ">รายชื่อนักเรียน</h2>
                         </div>
-                        <table className="block rounded-xl px-12 py-4 my-4 max-w-3xl divide-y divide-gray-200 overflow-x-auto bg-white">
-                            <thead className=" bg-gray-50 text-sm font-bold">
+                        <table className="block rounded-md px-9 py-4 my-4 max-w-4xl divide-y divide-gray-200 bg-white">
+                            <thead className=" bg-gray-50 text-lg font-bold">
                                 <tr>
-                                    <th className=" py-2  text-gray-500  tracking-wider">
+                                    <th className=" py-2 text-gray-500  tracking-wider">
                                         เลขที่
                                     </th>
                                     <th  className="px-2 py-2 text-gray-500  tracking-wider">
@@ -181,7 +181,7 @@ const Singleroom = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className=" bg-white rounded-xl divide-y divide-gray-200">
+                            <tbody className=" bg-white rounded-xl divide-y divide-gray-200 overflow-y-auto">
                                 {students.map((student)=>( 
                                 <tr>
                                     <td class="px-2 py-4 whitespace-nowrap">
@@ -192,19 +192,19 @@ const Singleroom = () => {
                                     </div>
                                     </td>
                                     <td class="px-6 py-4 w-full whitespace-wrap">
-                                        <div class="text-sm text-center font-medium text-gray-900">
+                                        <div class="text-lg text-center font-medium text-gray-900">
                                             {student.fname} {student.lname}
                                         </div>
                                     </td>
                                     
                                     <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <button className="text-amber-400" onClick={() => editstudent(student._id)}><svg className="" width="40" viewBox="1 1 24 15 "><FaClone/></svg></button>
+                                        <button className="text-amber-400" onClick={() => editstudent(student._id)}><svg className="hover:scale-125" width="40" viewBox="1 1 24 15 "><FaClone/></svg></button>
                                     </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <button className="text-red-400" onClick={()=>confirmDelete(student._id)}><svg className="" width="40" viewBox="1 1 24 15 "><RiDeleteBin6Fill /></svg></button>
+                                        <button className="text-red-400" onClick={()=>confirmDelete(student._id)}><svg className="hover:scale-125" width="40" viewBox="1 1 24 15 "><RiDeleteBin6Fill /></svg></button>
                                     </div>
                                     </td>
                                 </tr>
@@ -233,7 +233,7 @@ const Singleroom = () => {
                                 </h3>
                             </div>
                         </Link> 
-                        <Link to={`/game/${slug}`}> 
+                        <Link to={`/randomName/${slug}`}> 
                             <div className="group relative">
                                 <div className="relative h-80 w-full overflow-hidden rounded-lg hover:bg-black bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:scale-105 sm:h-64 ">
                                     <img src={randomPic} className="h-full w-full object-cover object-center hover:opacity-60"/>

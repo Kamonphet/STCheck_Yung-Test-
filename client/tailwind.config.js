@@ -7,7 +7,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      Poppins: "Poppins"
+      Kanit: "Kanit"
     },
     extend: {
       colors: {

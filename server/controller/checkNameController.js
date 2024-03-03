@@ -6,7 +6,7 @@ exports.createCheckName = async(req, res) => {
     
     await checknameModel.create({lekti_id, mission, check_name, reason, slug})
     .then((data)=>{
-        res.status(201).json({message : "Data has been added"})
+        res.status(201).json({message : "ข้อมูลการเช็คชื่อถูกเพิ่มแล้ว"})
     }).catch((err)=>{  
         res.status(400).json({error:" เกิดข้อผิดพลาด ใส่ข้อมูลอีกครั้ง"})
     });
@@ -17,7 +17,7 @@ exports.getChecknameformClassroom=async (req,res)=>{
     const { slug } = req.params;
     await checknameModel.find({slug})
     .then((chk)=>{
-        if(!chk) return res.status(404).json({message : "Notfound!"})
+        if(!chk) return res.status(404).json({message : "หาข้อมูลการเช็คชื่อไม่เจอ!"})
         res.status(200).json(chk)
     }).catch((err)=>console.log(err))
 }
