@@ -86,12 +86,12 @@ exports.updateRoom = async (req, res) => {
     })
 }
 
-exports.getSubject = async (req,res) => {
-    try {
-        const room = await roomModel.find({});
-        res.json(room);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Error fetching blogs' });
-    }
-}
+// exports.getSubject = async (req,res) => {
+//     try {
+//         const room = await roomModel.find({});
+//         res.json(room);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ message: 'Error fetching blogs' });
+//     }
+// }
