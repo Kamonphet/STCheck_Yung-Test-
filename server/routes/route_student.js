@@ -1,15 +1,13 @@
 const express =  require('express');
 const router = express.Router();
 const {createStudent, getAllStudent,singleStudent,updateStudent,deleteStudent, getStudentformclassroom} = require('../controller/studentController')
-const {authlogin} = require('../controller/authController')
-
 
 // CRUD นักเรียน
-router.post('/createStudent',authlogin,createStudent)
-router.get('/students',authlogin,getAllStudent)
-router.get('/student/:_id',authlogin,singleStudent)
-router.get('/students/:slug',authlogin,getStudentformclassroom)
-router.delete('/student/:_id',authlogin,deleteStudent)
-router.put('/student/:_id',authlogin,updateStudent)
+router.post('/createStudent',createStudent)
+router.get('/students',getAllStudent)
+router.get('/student/:_id',singleStudent)
+router.get('/students/:slug',getStudentformclassroom)
+router.delete('/student/:_id',deleteStudent)
+router.put('/student/:_id',updateStudent)
 
 module.exports=router

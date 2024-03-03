@@ -38,10 +38,10 @@ export default function Navbar_main() {
   const user = getUser()
 
   const navigation = [
-    { name: 'Dashboard', href: '/dashboard', current: true },
-    { name: 'Check Name', href: `/checkname/${slug}`, current: false },
-    { name: 'Game', href: `/game/${slug}`, current: false },
-    { name: 'Report', href: '#', current: false },
+    { name: 'หน้าหลัก', href: '/dashboard', current: true },
+    { name: 'การเช็คชื่อ', href: `/checkname/${slug}`, current: false },
+    { name: 'การสุ่มชื่อ', href: `/game/${slug}`, current: false },
+    { name: 'ระบบแจ้งการใช้งาน', href: '#', current: false },
   ]
 
   const [active, setActive] = useState(null);

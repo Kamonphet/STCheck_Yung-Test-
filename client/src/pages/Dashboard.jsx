@@ -73,9 +73,9 @@ const Dashboard = () => {
   return (
     <div className="loading">
         {
-            // loading ?
-            // <h2><PacmanLoader color="hsla(204, 100%, 71%, 1)" loading={loading} size={50}/></h2>
-            // :
+            loading ?
+            <h2><PacmanLoader color="hsla(204, 100%, 71%, 1)" loading={loading} size={50}/></h2>
+            :
             <div className="bg-white"style={{ backgroundImage: `url(${wallpaper2})`, backgroundSize: '100%' }}>
                 {openModal && <Modal closeModal={setOpenModal}/>}
                 <Navbar_main />

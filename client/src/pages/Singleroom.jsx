@@ -164,17 +164,20 @@ const Singleroom = () => {
                         <div class="bg-white  rounded-2xl px-6 py-6 max-w-60 mt-5">
                             <h2 class="text-3xl font-medium ">รายชื่อนักเรียน</h2>
                         </div>
-                        <table className="block rounded-xl px-12 py-4 my-4 max-w-2xl divide-y divide-gray-200 overflow-x-auto bg-white">
+                        <table className="block rounded-xl px-12 py-4 my-4 max-w-3xl divide-y divide-gray-200 overflow-x-auto bg-white">
                             <thead className=" bg-gray-50 text-sm font-bold">
                                 <tr>
-                                    <th className="px-2 py-2  text-gray-500  tracking-wider">
+                                    <th className=" py-2  text-gray-500  tracking-wider">
                                         เลขที่
                                     </th>
                                     <th  className="px-2 py-2 text-gray-500  tracking-wider">
                                         ชื่อ-นามสกุล
                                     </th>
-                                    <th  className="pl-16 py-2 text-gray-500 tracking-wider">
-                                        การจัดการ
+                                    <th  className="pr-3 py-2 text-gray-500 tracking-wider">
+                                        คัดลอก
+                                    </th>
+                                    <th  className="pr-5 py-2 text-gray-500 tracking-wider">
+                                        ลบ
                                     </th>
                                 </tr>
                             </thead>
