@@ -42,7 +42,7 @@ export default function Navbar_main() {
     { name: 'การเช็คชื่อ', href: `/checkname/${slug}`, current: false },
     { name: 'การสุ่มชื่อ', href: `/game/${slug}`, current: false },
     { name: 'ระบบแจ้งการใช้งาน', href: '/report', current: false },
-    { name: 'คู่มือการใช้งาน', href: 'https://drive.google.com/file/d/1wsG0oqOvGeNNqS4N1KP4oIvaAzm_aE6y/view?usp=sharing', current: false }
+    { name: 'คู่มือการใช้งาน', href: 'https://drive.google.com/file/d/1LU28JjTkUb8heIOTXtogp9DlR1IuYmTH/view?usp=sharing', current: false }
   ]
 
   const [active, setActive] = useState(null);
